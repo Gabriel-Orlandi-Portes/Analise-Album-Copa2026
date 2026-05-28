@@ -1,0 +1,1 @@
+# An-lise--lbum-Copa2026

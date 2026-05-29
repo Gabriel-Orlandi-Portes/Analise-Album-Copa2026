@@ -33,6 +33,11 @@ def Simular_Album():
     return pacotes_comprados, repetidas, colecao, custo_total
 
 
+# ============================================
+# MOSTRA UMA SIMULAÇÃO, APENAS QUANDO RODAR NESSE ARQUIVO
+# ============================================
+
+
 if __name__ == "__main__":
 
     pacotes_comprados, repetidas, colecao, custo_total = Simular_Album()

@@ -41,3 +41,11 @@ for selecao in selecoes:
 
         cromos_selecoes.append(figurinha)
 
+
+# --------------------------------------------
+# album junta os cromos especiais e normais
+# --------------------------------------------
+
+album = especiais + cromos_selecoes
+
+# print(len(album)) --> Mostra o total de cromos criados (980)

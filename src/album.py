@@ -1,13 +1,13 @@
 # --------------------------------------------
-# FIGURINHAS BRILHANTES
+# FIGURINHAS ESPECIAIS
 # --------------------------------------------
 # Define cromos brilhantes, sem contar com os escudos, apenas as figurinhas 00 e FWC1 ao FWC 19.
 
-especiais = ['00'] + [f'FWC{i}' for i in range(1, 20)]
+cromos_especiais = ['00'] + [f'FWC{i}' for i in range(1, 20)]
 
 
 # --------------------------------------------
-# FIGURINHAS NORMAIS
+# FIGURINHAS DAS SELEÇÕES
 # --------------------------------------------
 # Cria todas as seleções do álbum, organizadas de SIGLA1 até SIGLA20, sendo a número 1, brilhante
 # Exemplo:
@@ -46,6 +46,6 @@ for selecao in selecoes:
 # album junta os cromos especiais e normais
 # --------------------------------------------
 
-album = especiais + cromos_selecoes
+album = cromos_especiais + cromos_selecoes
 
 # print(len(album)) --> Mostra o total de cromos criados (980)

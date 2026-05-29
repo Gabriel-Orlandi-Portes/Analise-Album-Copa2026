@@ -17,17 +17,27 @@ especiais = ['00'] + [f'FWC{i}' for i in range(1, 20)]
 # BRA20
 
 selecoes = [
-    "ARG", "BRA", "FRA", "GER",
-    "USA", "MEX", "ESP", "POR",
-    "ENG", "ITA", "NED", "BEL",
-    "URU", "CRO", "JPN", "KOR",
-    "SEN", "MAR", "CAN", "AUS",
-    "SUI", "DEN", "POL", "SRB",
-    "COL", "CHI", "PER", "ECU",
-    "PAR", "BOL", "VEN", "CRC",
-    "CMR", "GHA", "NGA", "EGY",
-    "QAT", "SAU", "IRN", "IRQ",
-    "UAE", "NZL", "SWE", "NOR",
-    "UKR", "TUR", "COD", "ALG"
+    "MEX", "RSA", "KOR", "CZE", "CAN", "BIH",
+    "QAT", "SUI", "BRA", "MAR", "HAI", "SCO", 
+    "EUA", "PAR", "AUS", "TUR", "GER", "CUW",
+    "CIV", "ECU", "NED", "JPN", "SWE", "TUN",
+    "BEL", "EGY", "IRN", "NZL", "ESP", "CPV",
+    "KSA", "URU", "FRA", "SEN", "IRQ", "NOR",
+    "ARG", "ALG", "AUT", "JOR", "POR", "COD",
+    "UZB", "COL", "ENG", "CRO", "GHA", "PAN"
 ]
+
+
+# --------------------------------------------
+# GERAR FIGURINHAS DAS SELEÇÕES - 1 A 20
+# --------------------------------------------
+
+cromos_selecoes = []
+
+for selecao in selecoes: 
+    
+    for numero in range(1, 21):
+        figurinha = f'{selecao}{numero}'
+
+        cromos_selecoes.append(figurinha)
 

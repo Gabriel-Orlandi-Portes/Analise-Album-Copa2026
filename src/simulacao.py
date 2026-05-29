@@ -1,4 +1,5 @@
 from album import album
+import random
 
 # ============================================
 # DEFININDO DADOS DE PACOTES E ALBUM
@@ -29,5 +30,20 @@ def Simular_Album():
 
     custo_total = (pacotes_comprados * PRECO_PACOTE) + PRECO_ALBUM  
 
-    return pacotes_comprados, repetidas, custo_total
+    return pacotes_comprados, repetidas, colecao, custo_total
 
+
+if __name__ == "__main__":
+
+    pacotes_comprados, repetidas, colecao, custo_total = Simular_Album()
+
+    print("=" * 40)
+    print("RESULTADO DA SIMULAÇÃO")
+    print("=" * 40)
+
+    print(f"Pacotes comprados: {pacotes_comprados}")
+    print(f"Figurinhas encontradas: {len(colecao)}")
+    print(f"Figurinhas repetidas: {repetidas}")
+    print(f"Custo total: R$ {custo_total:.2f}")
+
+    print("=" * 40)

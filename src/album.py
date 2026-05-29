@@ -19,7 +19,7 @@ especiais = ['00'] + [f'FWC{i}' for i in range(1, 20)]
 selecoes = [
     "MEX", "RSA", "KOR", "CZE", "CAN", "BIH",
     "QAT", "SUI", "BRA", "MAR", "HAI", "SCO", 
-    "EUA", "PAR", "AUS", "TUR", "GER", "CUW",
+    "USA", "PAR", "AUS", "TUR", "GER", "CUW",
     "CIV", "ECU", "NED", "JPN", "SWE", "TUN",
     "BEL", "EGY", "IRN", "NZL", "ESP", "CPV",
     "KSA", "URU", "FRA", "SEN", "IRQ", "NOR",

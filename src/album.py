@@ -41,13 +41,15 @@ for selecao in selecoes:
         cromos_selecoes.append(figurinha)
 
 
-# --------------------------------------------
-# Cria a variável cromos_brilhantes, que junta os escudos de seleções e os cromos_especiais em uma variável
-# --------------------------------------------
+# Cria uma lista contendo todas as figurinhas brilhantes do álbum:
+# - 00
+# - FWC1 até FWC19
+# - Escudos das 48 seleções (SIGLA1)
 
 escudos = [f'{selecao}1' for selecao in selecoes]
 
 cromos_brilhantes = cromos_especiais + escudos
+
 
 # --------------------------------------------
 # album junta os cromos especiais e normais
@@ -55,4 +57,19 @@ cromos_brilhantes = cromos_especiais + escudos
 
 album = cromos_especiais + cromos_selecoes
 
-# print(len(album)) --> Mostra o total de cromos criados (980)
+
+# --------------------------------------------
+# TESTES LOCAIS
+# --------------------------------------------
+
+if __name__ == "__main__":
+
+    print(f"Total de cromos: {len(album)}")
+    print(f"Total de brilhantes (especiais e seleções): {len(cromos_brilhantes)}")
+    print(f"Total de especiais: {len(cromos_especiais)}")
+
+    print("\nPrimeiros 30 cromos:")
+    print(album[:30])
+
+    print("\nCromos brilhantes (especiais e seleções):")
+    print(cromos_brilhantes)

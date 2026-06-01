@@ -1,4 +1,4 @@
-from album import album
+from album import album, cromos_brilhantes
 import random
 
 # ============================================
@@ -16,8 +16,12 @@ PRECO_ALBUM = 75
 def Simular_Album():
 
     colecao = set()
+
     pacotes_comprados = 0
-    repetidas = 0
+
+    repetidas_normais = 0
+    repetidas_brilhantes = 0
+
 
     while len(colecao) < len(album):
         pacotes_comprados += 1
@@ -25,12 +29,18 @@ def Simular_Album():
 
         for figurinha in pacote:
             if figurinha in colecao:
-                repetidas += 1
+
+                if figurinha in cromos_brilhantes:
+                    repetidas_brilhantes += 1
+                else:
+                    repetidas_normais += 1
+
             colecao.add(figurinha)
 
+    repetidas_total = repetidas_normais + repetidas_brilhantes
     custo_total = (pacotes_comprados * PRECO_PACOTE) + PRECO_ALBUM  
 
-    return pacotes_comprados, repetidas, colecao, custo_total
+    return pacotes_comprados, repetidas_total, repetidas_normais, repetidas_brilhantes, colecao, custo_total
 
 
 # ============================================
@@ -40,15 +50,19 @@ def Simular_Album():
 
 if __name__ == "__main__":
 
-    pacotes_comprados, repetidas, colecao, custo_total = Simular_Album()
+    pacotes_comprados, repetidas_total, repetidas_normais, repetidas_brilhantes, colecao, custo_total = Simular_Album()
 
     print("=" * 40)
     print("RESULTADO DA SIMULAÇÃO")
     print("=" * 40)
 
     print(f"Pacotes comprados: {pacotes_comprados}")
-    print(f"Figurinhas encontradas: {len(colecao)}")
-    print(f"Figurinhas repetidas: {repetidas}")
+    print(f"Figurinhas encontradas: {len(colecao)} \n")
+
+    print(f"Repetidas totais: {repetidas_total}")
+    print(f"Repetidas normais: {repetidas_normais}")
+    print(f"Repetidas brilhantes: {repetidas_brilhantes}")
+
     print(f"Custo total: R$ {custo_total:.2f}")
 
     print("=" * 40)

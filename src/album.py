@@ -5,7 +5,6 @@
 
 cromos_especiais = ['00'] + [f'FWC{i}' for i in range(1, 20)]
 
-
 # --------------------------------------------
 # FIGURINHAS DAS SELEÇÕES
 # --------------------------------------------
@@ -41,6 +40,14 @@ for selecao in selecoes:
 
         cromos_selecoes.append(figurinha)
 
+
+# --------------------------------------------
+# Cria a variável cromos_brilhantes, que junta os escudos de seleções e os cromos_especiais em uma variável
+# --------------------------------------------
+
+escudos = [f'{selecao}1' for selecao in selecoes]
+
+cromos_brilhantes = cromos_especiais + escudos
 
 # --------------------------------------------
 # album junta os cromos especiais e normais

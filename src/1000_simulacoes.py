@@ -24,6 +24,21 @@ for i in range(N_SIMULACOES):
     resultados_repetidas_normais.append(repetidas_normais)
     resultados_repetidas_brilhantes.append(repetidas_brilhantes)
 
+# ============================================
+# ANÁLISE DOS RESULTADOS
+# ============================================
+
+media_pacotes = sum(resultados_pacotes) / N_SIMULACOES
+
+media_custo = sum(resultados_custos) / N_SIMULACOES
+
+media_repetidas = sum(resultados_repetidas_totais) / N_SIMULACOES
+
+media_repetidas_normais = sum(resultados_repetidas_normais) / N_SIMULACOES
+
+media_repetidas_brilhantes = sum(resultados_repetidas_brilhantes) / N_SIMULACOES
+
+
 
 
 

@@ -1,46 +1,59 @@
 from simulacao import Simular_Album
+import pandas as pd
 
-# ============================================
-# RODANDO 1.000 SIMULAÇÕES
-# ============================================
 
 N_SIMULACOES = 1000
 
-resultados_pacotes = []  # Resultado das qtde de pacotes necessários para completar o álbum em cada simulação
-resultados_custos = []  # Resultado do valor necessário para completar o álbum em cada simulação
+# ============================================
+# LISTA PARA ARMAZENAR RESULTADOS
 
-resultados_repetidas_totais = []
-resultados_repetidas_normais = []
-resultados_repetidas_brilhantes = []
+resultados = []
+
+
+# ============================================
+# EXECUTANDO SIMULAÇÕES
 
 for i in range(N_SIMULACOES):
 
     pacotes_comprados, repetidas_total, repetidas_normais, repetidas_brilhantes, colecao, custo_total = Simular_Album()
 
-    resultados_pacotes.append(pacotes_comprados)
-    resultados_custos.append(custo_total)
 
-    resultados_repetidas_totais.append(repetidas_total)
-    resultados_repetidas_normais.append(repetidas_normais)
-    resultados_repetidas_brilhantes.append(repetidas_brilhantes)
+    resultados.append({
+
+        "pacotes": pacotes_comprados,
+
+        "custo": custo_total,
+
+        "repetidas_total": repetidas_total,
+
+        "repetidas_normais": repetidas_normais,
+
+        "repetidas_brilhantes": repetidas_brilhantes
+
+    })
+
+
 
 # ============================================
-# ANÁLISE DOS RESULTADOS
+# TRANSFORMANDO EM DATAFRAME
+
+df = pd.DataFrame(resultados)
+
+
+
 # ============================================
+# EXPORTANDO CSV
 
-media_pacotes = sum(resultados_pacotes) / N_SIMULACOES
-
-media_custo = sum(resultados_custos) / N_SIMULACOES
-
-media_repetidas = sum(resultados_repetidas_totais) / N_SIMULACOES
-
-media_repetidas_normais = sum(resultados_repetidas_normais) / N_SIMULACOES
-
-media_repetidas_brilhantes = sum(resultados_repetidas_brilhantes) / N_SIMULACOES
+df.to_csv(
+    "../data/simulacoes.csv",
+    index=False
+)
 
 
+print("=" * 40)
+print("DADOS GERADOS")
+print("=" * 40)
 
+print(f"Simulações realizadas: {len(df)}")
 
-
-
-
+print("Arquivo salvo com sucesso!")

@@ -15,7 +15,7 @@
 
 Quanto custa, de verdade, completar um álbum de figurinhas?
 
-Este projeto responde essa pergunta usando **simulação estatística em Python**. Foram executadas **1.000 simulações** completas do processo de completar o álbum da Copa do Mundo 2026 — da primeira figurinha até a última — e os resultados foram analisados com Pandas, NumPy e Matplotlib.
+Este projeto responde essa pergunta usando **simulação estatística em Python**. Foram executadas **1.000 simulações** completas do processo de completar o álbum da Copa do Mundo 2026, e os resultados foram analisados com Pandas, NumPy e Matplotlib.
 
 A análise considera o modelo real de compra: pacotes com 7 figurinhas aleatórias (com reposição, como acontece na vida real), sem nenhuma troca com outros colecionadores.
 
@@ -42,7 +42,7 @@ A análise considera o modelo real de compra: pacotes com 7 figurinhas aleatóri
 
 ![Histograma de pacotes](assets/hist_pacotes.png)
 
-A distribuição tem cauda à direita — é mais provável gastar muito acima da média do que muito abaixo. A maioria das simulações ficou entre **920 e 1.131 pacotes**.
+A distribuição tem cauda à direita, logo, é mais provável gastar muito acima da média do que muito abaixo. A maioria das simulações ficou entre **900 e 1.100 pacotes**.
 
 ---
 
@@ -50,7 +50,7 @@ A distribuição tem cauda à direita — é mais provável gastar muito acima d
 
 ![Histograma de custo](assets/hist_custo.png)
 
-Metade das simulações ficou na faixa de **R$ 6.515 a R$ 7.993**. Os outliers chegam a mais de R$ 13.000 — o azar tem um preço alto.
+Metade das simulações ficou na faixa de **R$ 6.000 a R$ 8.000**. Os outliers chegam a mais de R$ 13.000.
 
 ---
 
@@ -93,7 +93,7 @@ As figurinhas normais geram **13x mais repetidas** que as brilhantes — resulta
 
 1. O álbum completo é gerado automaticamente como lista em `album.py`
 2. Cada pacote sorteia 7 figurinhas com reposição (`random.choices`)
-3. A coleção é armazenada em um `set()` — estrutura que ignora duplicatas automaticamente
+3. A coleção é armazenada em um `set()` —> estrutura que ignora duplicatas automaticamente
 4. O processo repete até o `set` ter 980 elementos (álbum completo)
 5. São registrados: pacotes comprados, custo total, repetidas normais e brilhantes
 
@@ -195,6 +195,10 @@ notebooks/analise_album_copa2026.ipynb
 - Git / GitHub
 
 ---
+
+##🚀 Observações
+
+Este repositório possui finalidade educacional e pode ser atualizado conforme novos aprendizados ou revisões de conteúdo.
 
 ## 👨‍💻 Autor
 

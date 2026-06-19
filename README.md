@@ -1,308 +1,203 @@
-# 📊 Análise Estatística do Álbum da Copa do Mundo 2026
+![Banner](assets/banner.png)
 
-## 📌 Objetivo
+<div align="center">
 
-Este projeto tem como objetivo analisar, através de simulações e técnicas de análise de dados, o custo estimado para completar o álbum de figurinhas da Copa do Mundo 2026.
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
 
-A proposta é utilizar Python para modelar a abertura de pacotes, acompanhar a evolução da coleção, calcular estatísticas e visualizar padrões relacionados ao comportamento da coleção.
-
----
-
-# 🏆 Informações do Álbum
-
-O álbum foi modelado considerando:
-
-- Total de cromos: **980**
-- Cromos normais: **912**
-- Cromos brilhantes: **68**
-- Figurinhas por pacote: **7**
-- Preço por pacote: **R$ 7,00**
-- Preço estimado do álbum capa dura: **R$ 75,00**
+</div>
 
 ---
 
-# ✨ Organização das Figurinhas
+## 📌 Sobre o projeto
 
-As figurinhas foram divididas em dois grupos:
+Quanto custa, de verdade, completar um álbum de figurinhas?
 
-## Cromos brilhantes
+Este projeto responde essa pergunta usando **simulação estatística em Python**. Foram executadas **1.000 simulações** completas do processo de completar o álbum da Copa do Mundo 2026 — da primeira figurinha até a última — e os resultados foram analisados com Pandas, NumPy e Matplotlib.
 
-Incluem:
+A análise considera o modelo real de compra: pacotes com 7 figurinhas aleatórias (com reposição, como acontece na vida real), sem nenhuma troca com outros colecionadores.
 
+---
+
+## 🏆 Resultados principais
+
+| Métrica | Valor |
+|---|---|
+| **Média de pacotes necessários** | 1.046 pacotes |
+| **Custo médio total** | R$ 7.393,00 |
+| **Intervalo de confiança 95%** | R$ 7.314 a R$ 7.473 |
+| **Melhor caso encontrado** | R$ 4.758,00 |
+| **Pior caso encontrado** | R$ 13.242,00 |
+| **Figurinhas repetidas (média)** | 6.339 — cerca de 86,6% do total comprado |
+
+> Em média, cada figurinha do álbum é comprada mais de **7 vezes** antes de completar a coleção.
+
+---
+
+## 📊 Visualizações
+
+### Distribuição de pacotes necessários
+
+![Histograma de pacotes](assets/hist_pacotes.png)
+
+A distribuição tem cauda à direita — é mais provável gastar muito acima da média do que muito abaixo. A maioria das simulações ficou entre **920 e 1.131 pacotes**.
+
+---
+
+### Distribuição do custo total
+
+![Histograma de custo](assets/hist_custo.png)
+
+Metade das simulações ficou na faixa de **R$ 6.515 a R$ 7.993**. Os outliers chegam a mais de R$ 13.000 — o azar tem um preço alto.
+
+---
+
+### Variação dos custos (ordenado)
+
+![Linha de custo](assets/linha_custo.png)
+
+A área vermelha (acima da média) tem cauda muito mais longa que a área verde, confirmando a assimetria: quem está com azar paga muito mais do que quem está com sorte poupa.
+
+---
+
+### Repetidas por tipo de figurinha
+
+![Barras repetidas](assets/bar_repetidas.png)
+
+As figurinhas normais geram **13x mais repetidas** que as brilhantes — resultado esperado, já que são 912 contra apenas 68 figurinhas brilhantes no álbum.
+
+---
+
+## 🃏 Informações do Álbum
+
+| Detalhe | Valor |
+|---|---|
+| Total de figurinhas | 980 |
+| Figurinhas normais | 912 |
+| Figurinhas brilhantes | 68 |
+| Figurinhas por pacote | 7 |
+| Preço por pacote | R$ 7,00 |
+| Preço do álbum (capa dura) | R$ 75,00 |
+| Número de seleções | 48 |
+
+**Figurinhas brilhantes:**
 - Figurinha especial `00`
-- Figurinhas `FWC1` até `FWC19`
-- Escudos das seleções (`SIGLA1`)
-
-Exemplo:
-
-```
-BRA1 → Escudo brilhante
-BRA2 → Jogador normal
-BRA3 → Jogador normal
-BRA20 → Jogador normal
-```
+- Figurinhas `FWC1` a `FWC19`
+- Escudos das 48 seleções (`SIGLA1`)
 
 ---
 
-# ⚙️ Metodologia
+## ⚙️ Como a simulação funciona
 
-A simulação funciona da seguinte forma:
+1. O álbum completo é gerado automaticamente como lista em `album.py`
+2. Cada pacote sorteia 7 figurinhas com reposição (`random.choices`)
+3. A coleção é armazenada em um `set()` — estrutura que ignora duplicatas automaticamente
+4. O processo repete até o `set` ter 980 elementos (álbum completo)
+5. São registrados: pacotes comprados, custo total, repetidas normais e brilhantes
 
-1. O álbum completo é criado automaticamente através de listas.
-2. Cada pacote possui 7 figurinhas aleatórias.
-3. A coleção do usuário é armazenada utilizando `set()`.
-4. O processo continua até completar todas as figurinhas.
-5. Durante a simulação são registrados:
-
-- Quantidade de pacotes necessários
-- Custo total da coleção
-- Quantidade de figurinhas repetidas
-- Repetidas normais
-- Repetidas brilhantes
+Esse ciclo é executado **1.000 vezes** e os resultados salvos em `data/simulacoes.csv`.
 
 ---
 
-# 📁 Estrutura do Projeto
+## 📁 Estrutura do projeto
 
 ```
 📁 Analise-Album-Copa2026/
 │
-├── data/      
-|     └── simulacoes.csv
-|
+├── assets/                    ← imagens para o README
+│
+├── data/
+│   └── simulacoes.csv         ← resultados das 1.000 simulações
+│
 ├── notebooks/
-|     
+│   └── analise_album_copa2026.ipynb  ← análise completa no Colab
 │
 ├── src/
-|   ├── album.py
-│   ├── simulacao.py
-│   └── 1000_simulacoes.py
-|
-|
-|
+│   ├── album.py               ← estrutura do álbum
+│   ├── simulacao.py           ← lógica de uma simulação
+│   └── 1000_simulacoes.py     ← executa 1.000 simulações e salva o CSV
+│
 ├── README.md
 └── .gitignore
-
 ```
 
 ---
 
-# 🧩 Arquivos do Projeto
+## 🚀 Como executar
 
-## `album.py`
-
-Responsável pela criação da estrutura do álbum.
-
-Este arquivo gera:
-
-- Figurinhas especiais
-- Seleções
-- Figurinhas normais
-- Figurinhas brilhantes
-- Álbum completo
-
-Exemplo:
-
-```python
-album = cromos_especiais + cromos_selecoes
-```
-
----
-
-## `simulacao.py`
-
-Responsável pela lógica da simulação.
-
-A função principal:
-
-```python
-Simular_Album()
-```
-
-Realiza:
-
-- Compra dos pacotes
-- Sorteio das figurinhas
-- Controle da coleção
-- Contagem de repetidas
-- Cálculo do custo final
-
-Retorna:
-
-- Pacotes comprados
-- Repetidas totais
-- Repetidas normais
-- Repetidas brilhantes
-- Coleção completa
-- Custo total
-
----
-
-## `1000_simulacoes.py`
-
-Responsável por executar várias simulações automaticamente.
-
-Quantidade atual:
-
-```python
-N_SIMULACOES = 1000
-```
-
-Cada execução gera novos dados contendo:
-
-- Quantidade de pacotes necessários
-- Custo final
-- Quantidade de repetidas
-- Separação entre repetidas normais e brilhantes
-
-Os resultados são armazenados em:
-
-```
-data/simulacoes.csv
-```
-
----
-
-# 📊 Análise de Dados
-
-Os dados gerados serão analisados utilizando:
-
-- Pandas
-- NumPy
-- Matplotlib
-
-As análises serão feitas no notebook:
-
-```
-notebooks/analise_album_copa2026.ipynb
-```
-
-Serão analisados:
-
-- Média de pacotes necessários
-- Distribuição dos custos
-- Quantidade média de repetidas
-- Comparação entre cromos normais e brilhantes
-- Visualizações através de gráficos
-
----
-
-# 🚀 Como executar o projeto
-
-## 1. Clone o repositório
+### 1. Clone o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/Gabriel-Orlandi-Portes/Analise-Album-Copa2026
+cd Analise-Album-Copa2026
 ```
 
----
-
-## 2. Acesse a pasta
-
-```bash
-cd analise-album-copa2026
-```
-
----
-
-## 3. Instale as dependências
+### 2. Instale as dependências
 
 ```bash
 pip install pandas numpy matplotlib
 ```
 
----
-
-## 4. Execute as simulações
-
-Entre na pasta:
+### 3. Execute as simulações
 
 ```bash
 cd src
-```
-
-Execute:
-
-```bash
 python 1000_simulacoes.py
 ```
 
-Após executar, o arquivo será atualizado:
+O arquivo `data/simulacoes.csv` será atualizado com os novos resultados.
+
+### 4. Abra o notebook
+
+Acesse o notebook no Google Colab ou no VS Code:
 
 ```
-data/simulacoes.csv
+notebooks/analise_album_copa2026.ipynb
 ```
+
+> No Colab, faça upload do arquivo `simulacoes.csv` quando solicitado.  
+> No VS Code, o notebook lê o CSV diretamente via `../data/simulacoes.csv`.
 
 ---
 
-# 🧪 Exemplo de resultado
+## 🔍 Principais aprendizados
 
-Uma simulação individual retorna:
+1. **O custo é alto e a variação é grande** — a diferença entre o melhor e o pior caso chega a quase R$ 9.000. A aleatoriedade tem impacto real.
 
-```
-RESULTADO DA SIMULAÇÃO
+2. **86,6% das figurinhas compradas são repetidas** — o colecionador passa a maior parte do tempo (e dinheiro) comprando cromos que já tem.
 
-Pacotes comprados: XXX
+3. **As últimas figurinhas são as mais caras** — o custo marginal de cada figurinha nova cresce exponencialmente conforme o álbum se completa. É o *paradoxo do colecionador*.
 
-Figurinhas encontradas: 980
+4. **A distribuição tem cauda à direita** — é mais provável gastar muito acima da média do que muito abaixo. Quem está com azar pode facilmente dobrar o custo típico.
 
-Repetidas totais: XXX
-
-Repetidas normais: XXX
-
-Repetidas brilhantes: XXX
-
-Custo total: R$ XXXX
-```
+5. **Trocas seriam transformadoras** — com 86% de repetidas, um sistema de trocas eficiente poderia reduzir o custo drasticamente. Análise futura planejada.
 
 ---
 
-# 📈 Próximas análises
+## 📈 Próximas análises
 
-O projeto pretende responder:
-
-- Quantos pacotes são necessários em média para completar o álbum?
-- Qual o custo médio da coleção?
-- Quantas figurinhas repetidas aparecem?
-- Quantas repetidas brilhantes aparecem?
-- Como as trocas podem reduzir o custo?
-- Qual o impacto de diferentes probabilidades de raridade?
+- [ ] Simular o impacto das trocas no custo final
+- [ ] Modelar diferentes probabilidades de raridade para brilhantes
+- [ ] Analisar a curva de saturação (figurinhas novas por pacote ao longo do tempo)
+- [ ] Comparar custo individual vs. custo em grupo com trocas
 
 ---
 
-# 🛠 Tecnologias utilizadas
+## 🛠 Tecnologias
 
-- Python
+- Python 3.10+
 - Pandas
 - NumPy
 - Matplotlib
-- Jupyter Notebook
-- Git/GitHub
+- Jupyter Notebook / Google Colab
+- Git / GitHub
 
 ---
 
-# 📌 Status do Projeto
+## 👨‍💻 Autor
 
-🚧 Em desenvolvimento
+**Gabriel Orlandi**
 
-Próximas etapas:
-
-- [ ] Criar análises exploratórias no notebook
-- [ ] Criar gráficos
-- [ ] Analisar distribuição dos custos
-- [ ] Estudar impacto das trocas
-- [ ] Adicionar modelos de raridade
-- [ ] Criar novas simulações
-
----
-
-# 👨‍💻 Autor
-
-Gabriel Orlandi
-
-Projeto desenvolvido para estudo de:
-
-- Python
-- Simulações
-- Análise de Dados
-- Visualização de informações
+Projeto desenvolvido para estudo de Python, simulações estatísticas e análise de dados.

@@ -1,4 +1,3 @@
-![Banner](assets/banner.png)
 
 <div align="center">
 
